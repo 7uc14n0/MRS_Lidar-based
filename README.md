@@ -59,12 +59,12 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
 
   ### Step 1: Robotic Arm Controller and Driver Nodes (PC 1)
   
-    - Load the Dobot workspace and start the driver node at a terminal
+  - Load the Dobot workspace and start the driver node at a terminal
     ```
     source ~/dobot_ws/install/setup.bash
     ros2 launch dobot_bringup_v3 dobot_bringup_ros2.launch.py
     ```
-    - In other Terminal run controller node
+  - In other Terminal run controller node
     ```
     source ~/dobot_ws/install/setup.bash
     python3 box_organizer_final.py
