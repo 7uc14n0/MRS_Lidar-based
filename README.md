@@ -71,28 +71,33 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
     ```
 
   ### Step 2: Gripper and Lidar Driver Nodes (Raspberry Pi - SSH)
-    Connect via SSH and start the relay node at a terminal:
-    ```bash
+  - Connect via SSH and start the relay node at a terminal:
+    ```
     python3 GripperController.py
-    In other Terminal run lidar driver node:
-    ```bash
+    ```
+  - In other Terminal run lidar driver node:
+    ```
     source  ~unilidar_sdk/unitree_lidar_ros2/install/setup.bash
     ros2 launch unitree_lidar_ros2 launch.py
+    ```
 
   ### Step 3: LiDAR Processing Node (PC 2)
-    Run the volume estimation script:
-    ```bash
+  - Run the volume estimation script:
+    ```
     python3 PCDVolumeEstimationBoundingBox.py
+    ```
 
-   ### Step 4: Pioneer Node Driver (Jetson Nano)
-    Start the mobile driver node:
-    ```bash
+   ### Step 4: Pioneer Node Driver (Jetson Nano - SSH)
+   - Connect via SSH and Start the mobile driver node:
+    ```
     source ~/rosaria_ws/install/setup.bash
+    ```
 
    ### Step 4: Pioneer 3DX Controller Node (PC 3)
-     Run the volume estimation script:
-     ```bash
+   - Run the volume estimation script:
+     ```
      python3 Bezier_control.py
+     ```
 
 ---
 ## 🔄 Communication Flow (The "Handshake")
