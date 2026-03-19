@@ -58,12 +58,13 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
 **Note:** Every terminal must have the ROS 2 environment sourced (`source /opt/ros/<distro>/setup.bash`) and export ROS_DOMAIN_ID=0. Make sure that all devices are on the same network. Adjust the settings of the waypoints of the mobile robot, the manipulator robot, and the Lidar according to your environment, in the parameters of the control and processing codes. For more information, read the article to which this repository is linked.
 
   ### Step 1: Robotic Arm Controller and Driver Nodes (PC 1)
-    Load the Dobot workspace and start the driver node at a terminal:
+  
+    - Load the Dobot workspace and start the driver node at a terminal
     ```
     source ~/dobot_ws/install/setup.bash
     ros2 launch dobot_bringup_v3 dobot_bringup_ros2.launch.py
     ```
-    In other Terminal run controller node:
+    - In other Terminal run controller node
     ```
     source ~/dobot_ws/install/setup.bash
     python3 box_organizer_final.py
