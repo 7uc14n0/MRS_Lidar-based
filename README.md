@@ -26,7 +26,6 @@ The system is distributed across four processing units to balance the computatio
    - Install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html)
    - Install [Dobot ROS2 V3 Driver](https://github.com/Dobot-Arm/DOBOT_6Axis_ROS2_V3/blob/main/README_EN.md)
    - Download the folder CR3_Arm-Control from this repository
-   - Ensure the Controller CR3 is reachable via Ethernet.
 
 2. **Vision & Processing (PC 2)**
    - Install [Ubuntu 22.04](https://releases.ubuntu.com/jammy/)
@@ -38,7 +37,6 @@ The system is distributed across four processing units to balance the computatio
    - Install [Ubuntu 22.04](https://releases.ubuntu.com/jammy/)
    - Install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html)
    - Download the folder Pioneer_3DX-Control from this repository
-   - Ensure the Controller CR3 is reachable via Ethernet.
   
 4. **Mobile Base (Jetson Nano)**
     - Install [Ubuntu 20.04](https://github.com/Qengineering/Jetson-Nano-Ubuntu-20-image?tab=readme-ov-file)
