@@ -60,17 +60,13 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
   ### Step 1: Robotic Arm Controller and Driver Nodes (PC 1)
     Load the Dobot workspace and start the driver node at a terminal:
     
-    ```bash
-    source ~/dobot_ws/install/setup.bash
-    ros2 launch dobot_bringup_v3 dobot_bringup_ros2.launch.py
-    ```
+    `source ~/dobot_ws/install/setup.bash`
+    `ros2 launch dobot_bringup_v3 dobot_bringup_ros2.launch.py`
     
     In other Terminal run controller node:
-    
-    ```bash
-    source ~/dobot_ws/install/setup.bash
-    python3 box_organizer_final.py
-    ```
+ 
+    `source ~/dobot_ws/install/setup.bash`
+    `python3 box_organizer_final.py`
 
   ### Step 2: Gripper and Lidar Driver Nodes (Raspberry Pi - SSH)
     Connect via SSH and start the relay node at a terminal:
