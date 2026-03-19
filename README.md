@@ -9,8 +9,8 @@ It integrates a Pioneer P3-DX mobile base, a Dobot CR3 robotic arm, and a LiDAR-
 
 The system is distributed across four processing units to balance the computational load:
 
-| Hardware                 | OS            | ROS 2   | Responsibility                         |
-|--------------------------|---------------|---------|----------a------------------------------|
+| Hardware                 | OS           | ROS 2   | Responsibility                          |
+|--------------------------|--------------|---------|-----------------------------------------|
 | PC 1 (Arm Control)       | Ubuntu 22.04 | Humble  | Dobot CR3 Control & Logic               |
 | PC 2 (Vision processing) | Ubuntu 22.04 | Humble  | LiDAR PointCloud Processing (Open3D)    |
 | PC 3 (Trajectory Control)| Ubuntu 22.04 | Humble  | Pioneer P3-DX Control & Logic           |
@@ -40,45 +40,59 @@ The system is distributed across four processing units to balance the computatio
    - Download the folder Pioneer_3DX-Control from this repository
    - Ensure the Controller CR3 is reachable via Ethernet.
   
-4.  **Mobile Base (Jetson Nano)**
-   - Install [Ubuntu 20.04](https://github.com/Qengineering/Jetson-Nano-Ubuntu-20-image?tab=readme-ov-file)
-   - Install [ROS2 Foxy](https://docs.ros.org/en/foxy/Installation.html)
-   - Install RosAria Driver [adapted for ROS 2](https://github.com/Bessawy/RosAria2)
-   - Connect via Serial-to-USB to the Pioneer.
+4. **Mobile Base (Jetson Nano)**
+    - Install [Ubuntu 20.04](https://github.com/Qengineering/Jetson-Nano-Ubuntu-20-image?tab=readme-ov-file)
+    - Install [ROS2 Foxy](https://docs.ros.org/en/foxy/Installation.html)
+    - Install RosAria Driver [adapted for ROS 2](https://github.com/Bessawy/RosAria2)
+    - Connect via Serial-to-USB to the Pioneer.
 
 5. **Sensors & Actuators (Raspberry Pi 3)**
    - Install [Ubuntu 20.04](https://github.com/Joshua-Riek/ubuntu-raspberry-pi) or install Ubuntu 22.04 and Docker with         Ubuntu 20.04.
    - Install [ROS2 Foxy](https://docs.ros.org/en/foxy/Installation.html)
    - Install Unitree [LiDAR SDK ROS2](https://github.com/unitreerobotics/unilidar_sdk/blob/main/unitree_lidar_ros2/src/unitree_lidar_ros2/README.md)
    - Install RPi.GPIO for relay control.
+   - Download the folder Gripper-Control from this repository
 ---
 
 ## 🚀 Execution Sequence
 
 To ensure the handshakes between nodes occur correctly, follow this specific launch order.  
-**Note:** Every terminal must have the ROS 2 environment sourced (`source /opt/ros/<distro>/setup.bash`).
+**Note:** Every terminal must have the ROS 2 environment sourced (`source /opt/ros/<distro>/setup.bash`) and export ROS_DOMAIN_ID=0. Make sure that all devices are on the same network. Adjust the settings of the waypoints of the mobile robot, the manipulator robot, and the Lidar according to your environment, in the parameters of the control and processing codes. For more information, read the article to which this repository is linked.
 
-  ### Step 1: Robotic Arm (PC 1)
-    Load the Dobot workspace and start the controller:
+  ### Step 1: Robotic Arm Controller and Driver Nodes (PC 1)
+    Load the Dobot workspace and start the driver node at a terminal:
+    ```bash
+    source ~/dobot_ws/install/setup.bash
+    ros2 launch dobot_bringup_v3 dobot_bringup_ros2.launch.py
+    In other Terminal run controller node:
     ```bash
     source ~/dobot_ws/install/setup.bash
     python3 box_organizer_final.py
 
-  ### Step 2: Gripper Control (Raspberry Pi - SSH)
-    Connect via SSH and start the relay node:
+  ### Step 2: Gripper and Lidar Driver Nodes (Raspberry Pi - SSH)
+    Connect via SSH and start the relay node at a terminal:
     ```bash
     python3 GripperController.py
+    In other Terminal run lidar driver node:
+    ```bash
+    source  ~unilidar_sdk/unitree_lidar_ros2/install/setup.bash
+    ros2 launch unitree_lidar_ros2 launch.py
 
-  ### Step 3: LiDAR Processing (PC 2)
+  ### Step 3: LiDAR Processing Node (PC 2)
     Run the volume estimation script:
     ```bash
     python3 PCDVolumeEstimationBoundingBox.py
 
-  ### Step 4: Pioneer Controller (Jetson Nano)
-    Start the mobile base logic:
+   ### Step 4: Pioneer Node Driver (Jetson Nano)
+    Start the mobile driver node:
     ```bash
     source ~/rosaria_ws/install/setup.bash
-    python3 pioneer_controller_Bezier_v7.py
+
+   ### Step 4: Pioneer 3DX Controller Node (PC 3)
+     Run the volume estimation script:
+     ```bash
+     python3 Bezier_control.py
+
 ---
 ## 🔄 Communication Flow (The "Handshake")
 
@@ -90,8 +104,10 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
 
 ---
 
-## 📝 Authors and Acknowledgments
+## 📝 Authors
 
-- **Jose Leandro Caires Mirante** - Lead Developer (UFV / IF Sudeste MG)  
-- **Luciano Moreira** - Hardware & Gripper Integration  
+- **Luciano Moreira** - (UFV / IF Sudeste MG)  
+- **Jose Leandro Caires Mirante** - (UFV)
+- **Geissiane Aguiar** - (UFV)
+- **Alexandre Santos Brandão** - (UFV)
 
