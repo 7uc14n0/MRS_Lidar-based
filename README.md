@@ -3,6 +3,10 @@
 This project implements a distributed robotic system for automated box sorting.  
 It integrates a Pioneer P3-DX mobile base, a Dobot CR3 robotic arm, and a LiDAR-based volume estimation system, all orchestrated via ROS 2.
 
+-**Image of Experimental Enviroment**
+
+![Experimental Enviroment](figure/Experimental Enviroment.png)
+
 ---
 
 ## 🏗 System Architecture
