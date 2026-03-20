@@ -25,18 +25,18 @@ The system is distributed across four processing units to balance the computatio
    - Install [Ubuntu 22.04](https://releases.ubuntu.com/jammy/)
    - Install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html)
    - Install [Dobot ROS2 V3 Driver](https://github.com/Dobot-Arm/DOBOT_6Axis_ROS2_V3/blob/main/README_EN.md)
-   - Download the folder CR3_Arm-Control from this repository
+   - Download the folder CR3_ARM-Control from this repository
 
 2. **Vision & Processing (PC 2)**
    - Install [Ubuntu 22.04](https://releases.ubuntu.com/jammy/)
    - Install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html)
-   - Download the folder Lidar_4D-Processing from this repository
+   - Download the folder 4D_LiDAR-Processing from this repository
    - Install Open3D: `pip3 install open3d`.
 
-3. **Mobile Robot Control trajectory**
+3. **Mobile Robot Control trajectory (PC 3)**
    - Install [Ubuntu 22.04](https://releases.ubuntu.com/jammy/)
    - Install [ROS2 Humble](https://docs.ros.org/en/humble/Installation.html)
-   - Download the folder Pioneer_3DX-Control from this repository
+   - Download the folder Pioneer3DX-Control from this repository
   
 4. **Mobile Base (Jetson Nano)**
     - Install [Ubuntu 20.04](https://github.com/Qengineering/Jetson-Nano-Ubuntu-20-image?tab=readme-ov-file)
@@ -67,36 +67,43 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
   - In other Terminal run controller node
     ```
     source ~/dobot_ws/install/setup.bash
+    cd CR3_ARM-Control/
     python3 box_organizer_final.py
     ```
+  - **Note:** If you are using the real robot, type yes "s", if you want it to connect directly to the real robot. This algorithm has a     simulation function that can be used to simulate the reception of measurement data and move the arm to the pick and drop positions,     through text messages; for this, type no "n" in the question. Follow the other program instructions during execution.
 
   ### Step 2: Gripper and Lidar Driver Nodes (Raspberry Pi - SSH)
   - Connect via SSH and start the relay node at a terminal:
     ```
+    cd Gripper-Control/
     python3 GripperController.py
     ```
   - In other Terminal run lidar driver node:
     ```
-    source  ~unilidar_sdk/unitree_lidar_ros2/install/setup.bash
+    cd unilidar_sdk/unitree_lidar_ros2/
+    source install/setup.bash
     ros2 launch unitree_lidar_ros2 launch.py
     ```
 
   ### Step 3: LiDAR Processing Node (PC 2)
   - Run the volume estimation script:
     ```
-    python3 PCDVolumeEstimationBoundingBox.py
+    cd 4D_LiDAR-Processing
+    python3 automaticVolumeEstimation.py
     ```
 
    ### Step 4: Pioneer Node Driver (Jetson Nano - SSH)
    - Connect via SSH and Start the mobile driver node:
     ```
-    source ~/rosaria_ws/install/setup.bash
+    source ~/pioneer/foxy/local_setup.bash
+    ros2 run rosaria RosAria
     ```
 
    ### Step 4: Pioneer 3DX Controller Node (PC 3)
    - Run the volume estimation script:
      ```
-     python3 Bezier_control.py
+     cd Pioneer3DX-Control
+     python3 pioneer_controller_Bezier_v7.py
      ```
 
 ---
@@ -112,8 +119,8 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
 
 ## 📝 Authors
 
-- **Luciano Moreira** - (UFV / IF Sudeste MG)  
+- **Luciano Gonçalves Moreira** - (UFV / IF Sudeste MG)  
 - **Jose Leandro Caires Mirante** - (UFV)
-- **Geissiane Aguiar** - (UFV)
+- **Geissiane Aparecida de Aguiar** - (UFV)
 - **Alexandre Santos Brandão** - (UFV)
 
