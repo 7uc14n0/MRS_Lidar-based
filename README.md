@@ -7,6 +7,10 @@ It integrates a Pioneer P3-DX mobile base, a Dobot CR3 robotic arm, and a LiDAR-
 
 ![Experimental Enviroment](figure/Experimental_Enviroment.png)
 
+-**Image of Deposite Area for pick and place operations**
+
+![Experimental Enviroment](figure/Deosit_Area_Boxes.png)
+
 ---
 
 ## 🏗 System Architecture
