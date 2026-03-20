@@ -5,7 +5,7 @@ It integrates a Pioneer P3-DX mobile base, a Dobot CR3 robotic arm, and a LiDAR-
 
 -**Image of Experimental Enviroment**
 
-![Experimental Enviroment](figure/Experimental Enviroment.png)
+![Experimental Enviroment](figure/Experimental_Enviroment.png)
 
 ---
 
