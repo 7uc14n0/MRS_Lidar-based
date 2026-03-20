@@ -107,7 +107,7 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
     ros2 run rosaria RosAria
     ```
 
-   ### Step 4: Pioneer 3DX Controller Node (PC 3)
+   ### Step 5: Pioneer 3DX Controller Node (PC 3)
    - Run the volume estimation script:
      ```
      cd Pioneer3DX-Control
