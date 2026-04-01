@@ -127,8 +127,8 @@ To ensure the handshakes between nodes occur correctly, follow this specific lau
 
 ## 📝 Authors
 
-- **Luciano Gonçalves Moreira** - (UFV / IF Sudeste MG)  
-- **Jose Leandro Caires Mirante** - (UFV)
-- **Geissiane Aparecida de Aguiar** - (UFV)
-- **Alexandre Santos Brandão** - (UFV)
+- **Luciano Gonçalves Moreira** - luciano.goncalves@ufv.br (UFV / IF Sudeste MG)  
+- **Jose Leandro Caires Mirante** - jose.mirante@ufv.br (UFV)
+- **Geissiane Aparecida de Aguiar** - geissiane.aguiar@ufv.br (UFV)
+- **Alexandre Santos Brandão** - Alexandre.brandao@ufv.br (UFV)
 
